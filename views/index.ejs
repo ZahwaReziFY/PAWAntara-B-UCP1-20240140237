@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/header', { title: title }) %>
+</head>
+<body class="bg-cream text-ink font-sans">
+  <%- include('partials/navbar') %>
+
+  <main class="max-w-5xl mx-auto px-5 pb-12">
+    <!-- Hero -->
+    <section class="mt-6 rounded-xl bg-gradient-to-br from-primary to-primary-dark text-white p-8 md:p-12" aria-labelledby="hero-title">
+      <div class="max-w-md">
+        <h1 id="hero-title" class="text-3xl font-bold mb-3">Belanja Sembako Jadi Lebih Mudah</h1>
+        <p class="text-accent-light mb-5">
+          Cek stok dan harga terbaru kapan saja, tanpa perlu menunggu balasan
+          WhatsApp. Ada juga fitur Tanya AI untuk pertanyaan cepat seputar toko.
+        </p>
+        <a href="/produk" class="inline-block bg-accent hover:bg-accent/90 text-white font-semibold px-5 py-2.5 rounded-lg">
+          Lihat Semua Produk
+        </a>
+      </div>
+    </section>
+
+    <!-- Preview produk: CSS Grid -->
+    <section class="mt-10" aria-labelledby="preview-title">
+      <h2 id="preview-title" class="text-xl font-bold text-primary-dark mb-4">Produk Pilihan</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
+        <% preview.forEach(function(p) { %>
+          <article class="bg-white border border-accent-light rounded-xl p-5 shadow-sm flex flex-col gap-1">
+            <div class="w-14 h-14 rounded-lg bg-accent-light flex items-center justify-center text-2xl mb-2" aria-hidden="true">🛒</div>
+            <h3 class="font-semibold"><%= p.name %></h3>
+            <p class="text-accent font-bold"><%= 'Rp ' + p.price.toLocaleString('id-ID') %></p>
+            <p class="text-sm text-muted mb-2">Stok: <%= p.stock %></p>
+            <a href="/produk/<%= p.id %>" class="inline-block bg-accent-light hover:bg-accent-light/70 text-primary-dark font-semibold px-4 py-2 rounded-lg text-sm w-fit">Lihat Detail</a>
+          </article>
+        <% }); %>
+      </div>
+      <a href="/produk" class="inline-block mt-4 font-semibold text-primary">Lihat semua produk &rarr;</a>
+    </section>
+
+    <!-- Info: Flexbox -->
+    <section class="mt-10" aria-labelledby="info-title">
+      <h2 id="info-title" class="text-xl font-bold text-primary-dark mb-4">Kenapa Belanja di Toko Kami?</h2>
+      <div class="flex flex-wrap gap-5">
+        <article class="flex-1 min-w-[220px] bg-white border border-accent-light rounded-xl p-5">
+          <h3 class="font-semibold mb-1">Harga Selalu Update</h3>
+          <p class="text-sm text-muted">Data harga &amp; stok dikelola langsung oleh pemilik toko.</p>
+        </article>
+        <article class="flex-1 min-w-[220px] bg-white border border-accent-light rounded-xl p-5">
+          <h3 class="font-semibold mb-1">Tanya Cepat Lewat AI</h3>
+          <p class="text-sm text-muted">Pertanyaan umum seperti jam buka dan ongkir bisa langsung dijawab.</p>
+        </article>
+        <article class="flex-1 min-w-[220px] bg-white border border-accent-light rounded-xl p-5">
+          <h3 class="font-semibold mb-1">Kebutuhan Rumah Tangga Lengkap</h3>
+          <p class="text-sm text-muted">Dari beras, minyak, hingga perlengkapan rumah tangga sehari-hari.</p>
+        </article>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
