@@ -1,0 +1,17 @@
+/* ============================================================
+   Custom CSS kecil di atas Tailwind CDN.
+   Dipakai hanya untuk hal yang belum dicover utility class
+   Tailwind secara langsung: animasi bar hamburger jadi ikon "X".
+   Layout utama (Flexbox, Grid, responsif) sudah 100% pakai
+   utility class Tailwind langsung di file .ejs.
+   ============================================================ */
+
+.hamburger-btn.open .bar:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+.hamburger-btn.open .bar:nth-child(2) {
+  opacity: 0;
+}
+.hamburger-btn.open .bar:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
