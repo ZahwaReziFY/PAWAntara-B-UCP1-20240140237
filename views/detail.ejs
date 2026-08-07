@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/header', { title: title }) %>
+</head>
+<body class="bg-cream text-ink font-sans">
+  <%- include('partials/navbar') %>
+
+  <main class="max-w-5xl mx-auto px-5 pb-12">
+    <% if (!produk) { %>
+      <section class="text-center py-16" aria-labelledby="nf-title">
+        <h1 id="nf-title" class="text-4xl font-bold text-primary-dark mb-2">Produk Tidak Ditemukan</h1>
+        <p class="text-muted mb-5">Maaf, produk dengan ID tersebut tidak ada di toko kami.</p>
+        <a href="/produk" class="inline-block bg-accent hover:bg-accent/90 text-white font-semibold px-5 py-2.5 rounded-lg">Kembali ke Daftar Produk</a>
+      </section>
+    <% } else { %>
+      <section class="mt-6" aria-labelledby="detail-title">
+        <nav aria-label="Breadcrumb" class="text-sm text-muted mb-4">
+          <a href="/produk" class="hover:text-primary">Produk</a> &rsaquo;
+          <span class="text-ink font-semibold"><%= produk.name %></span>
+        </nav>
+
+        <!-- Detail card: Flexbox, stack di mobile -->
+        <article class="bg-white border border-accent-light rounded-xl p-8 shadow-sm flex flex-col md:flex-row gap-8">
+          <div class="w-full md:w-[140px] h-[140px] rounded-xl bg-accent-light flex items-center justify-center text-5xl shrink-0" aria-hidden="true">🛒</div>
+          <div class="flex-1">
+            <span class="inline-block bg-primary text-white text-[11px] font-semibold uppercase tracking-wide px-2.5 py-0.5 rounded-full mb-2">
+              <%= produk.category === 'sembako' ? 'Sembako' : 'Rumah Tangga' %>
+            </span>
+            <h1 id="detail-title" class="text-2xl font-bold text-primary-dark"><%= produk.name %></h1>
+            <p class="text-2xl font-bold text-accent my-2"><%= 'Rp ' + produk.price.toLocaleString('id-ID') %></p>
+            <p class="text-muted mb-3">Stok tersedia: <%= produk.stock %> unit</p>
+            <p class="mb-5"><%= produk.description %></p>
+            <a href="/produk" class="inline-block bg-accent-light hover:bg-accent-light/70 text-primary-dark font-semibold px-5 py-2.5 rounded-lg">&larr; Kembali ke Daftar Produk</a>
+          </div>
+        </article>
+      </section>
+    <% } %>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
