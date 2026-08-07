@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/header', { title: title }) %>
+</head>
+<body class="bg-cream text-ink font-sans">
+  <%- include('partials/navbar') %>
+  <main class="max-w-5xl mx-auto px-5 pb-12">
+    <section class="text-center py-16" aria-labelledby="nf-title">
+      <h1 id="nf-title" class="text-6xl font-bold text-primary-dark mb-2">404</h1>
+      <p class="text-muted mb-5">Halaman yang kamu cari tidak ditemukan.</p>
+      <a href="/" class="inline-block bg-accent hover:bg-accent/90 text-white font-semibold px-5 py-2.5 rounded-lg">Kembali ke Beranda</a>
+    </section>
+  </main>
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+</body>
+</html>
