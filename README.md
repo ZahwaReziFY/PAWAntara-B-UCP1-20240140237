@@ -1,9 +1,9 @@
-TOKO SEMBAKO ARIESTA
+## TOKO SEMBAKO ARIESTA
 
 Nama: ZAHWA REZI FADHILAH YASYFI'
 NIM: 20240140237
 
-Deskripsi Project
+## Deskripsi Project
 
 Website Toko Sembako Ariesta dibangun dengan Node.js + Express.js,
 memakai EJS sebagai view engine dan partials untuk navbar/footer.
@@ -15,12 +15,13 @@ penuh, serta logic balasan Tanya AI baru dikerjakan di Sprint 2.
 ## Cara Menjalankan Project Secara Lokal
 ```bash
 npm install
-npm run dev     # menjalankan server via nodemon (auto-restart)
+npm run dev     
 ```
 Server berjalan di `http://localhost:3000`.
 
 
-Struktur Folder
+## Struktur Folder
+```
 UTS PAW
 ├── data/
 │   └── products.js         # data produk dummy (in-memory)
@@ -46,8 +47,9 @@ UTS PAW
 ├── package.json
 ├── .gitignore
 └── README.md
+```
 
-Daftar Endpoint (Sprint 1)
+## Daftar Endpoint (Sprint 1)
 
 | Method | Endpoint          | Deskripsi                                   | Akses  |
 | ------ | ------------------ | -------------------------------------------- | ------ |
@@ -69,7 +71,7 @@ Contoh response `GET /api/products`:
 }
 ```
 
-Penjelasan Tampilan (UI)
+## Penjelasan Tampilan (UI)
 
 - Palet warna: krem hangat sebagai latar, hijau tua muted sebagai warna
   utama, dan terracotta sebagai warna aksen — dipilih agar terasa hangat
