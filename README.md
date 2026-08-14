@@ -16,6 +16,7 @@ backend — bukan API AI eksternal.
 
 ## Cara Menjalankan Project Secara Lokal
 npm install
+&
 npm run dev    
 Server berjalan di `http://localhost:3000`.
 
