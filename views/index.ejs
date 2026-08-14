@@ -27,7 +27,6 @@
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
         <% preview.forEach(function(p) { %>
           <article class="bg-white border border-accent-light rounded-xl p-5 shadow-sm flex flex-col gap-1">
-            <div class="w-14 h-14 rounded-lg bg-accent-light flex items-center justify-center text-2xl mb-2" aria-hidden="true">🛒</div>
             <h3 class="font-semibold"><%= p.name %></h3>
             <p class="text-accent font-bold"><%= 'Rp ' + p.price.toLocaleString('id-ID') %></p>
             <p class="text-sm text-muted mb-2">Stok: <%= p.stock %></p>

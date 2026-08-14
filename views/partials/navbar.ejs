@@ -29,6 +29,11 @@
       <a href="/" class="px-5 py-3 md:p-0 border-b md:border-0 border-accent-light font-medium text-ink hover:text-primary">Beranda</a>
       <a href="/produk" class="px-5 py-3 md:p-0 border-b md:border-0 border-accent-light font-medium text-ink hover:text-primary">Produk</a>
       <a href="/tanya-ai" class="px-5 py-3 md:p-0 border-b md:border-0 border-accent-light font-medium text-ink hover:text-primary">Tanya AI</a>
+      <% if (typeof loggedIn !== 'undefined' && loggedIn) { %>
+        <a href="/dashboard" class="px-5 py-3 md:p-0 border-b md:border-0 border-accent-light font-medium text-primary hover:text-primary-dark">Dashboard</a>
+      <% } else { %>
+        <a href="/login" class="px-5 py-3 md:p-0 border-b md:border-0 border-accent-light font-medium text-ink hover:text-primary">Login</a>
+      <% } %>
     </nav>
   </div>
 </header>

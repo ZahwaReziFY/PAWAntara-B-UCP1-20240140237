@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/header', { title: title }) %>
+</head>
+<body class="bg-cream text-ink font-sans">
+  <%- include('partials/navbar') %>
+
+  <main class="max-w-md mx-auto px-5 pb-16 pt-10">
+    <section aria-labelledby="login-title" class="bg-white border border-accent-light rounded-xl p-8 shadow-sm">
+      <h1 id="login-title" class="text-2xl font-bold text-primary-dark mb-1">Login Admin</h1>
+      <p class="text-muted text-sm mb-6">Khusus untuk Ibu Aries &amp; kasir toko.</p>
+
+      <div id="login-error" class="hidden bg-red-50 border border-red-200 text-red-700 text-sm rounded-lg px-4 py-2.5 mb-4" role="alert"></div>
+
+      <form id="login-form" class="flex flex-col gap-4" novalidate>
+        <div class="flex flex-col gap-1">
+          <label for="username" class="text-sm font-semibold text-muted">Username</label>
+          <input
+            type="text"
+            id="username"
+            name="username"
+            required
+            class="border border-accent-light rounded-lg px-3 py-2 bg-cream focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="password" class="text-sm font-semibold text-muted">Password</label>
+          <input
+            type="password"
+            id="password"
+            name="password"
+            required
+            class="border border-accent-light rounded-lg px-3 py-2 bg-cream focus:outline-none focus:ring-2 focus:ring-primary"
+          />
+        </div>
+
+        <button
+          type="submit"
+          id="login-submit"
+          class="bg-accent hover:bg-accent/90 text-white font-semibold px-5 py-2.5 rounded-lg mt-2"
+        >
+          Login
+        </button>
+      </form>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+  <script src="/js/login.js"></script>
+</body>
+</html>

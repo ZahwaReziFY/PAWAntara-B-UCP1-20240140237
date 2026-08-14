@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <%- include('partials/header', { title: title }) %>
+</head>
+<body class="bg-cream text-ink font-sans">
+  <%- include('partials/navbar') %>
+
+  <main class="max-w-5xl mx-auto px-5 pb-16">
+    <section class="mt-8 flex flex-wrap items-center justify-between gap-3" aria-labelledby="dash-title">
+      <div>
+        <h1 id="dash-title" class="text-2xl font-bold text-primary-dark">Dashboard Admin</h1>
+        <p class="text-muted text-sm">Masuk sebagai <strong><%= username %></strong>. Kelola produk toko di sini.</p>
+      </div>
+      <button
+        id="logout-btn"
+        class="bg-accent-light hover:bg-accent-light/70 text-primary-dark font-semibold px-5 py-2.5 rounded-lg"
+      >
+        Logout
+      </button>
+    </section>
+
+    <!-- Notifikasi hasil aksi -->
+    <div id="dash-alert" class="hidden mt-5 text-sm rounded-lg px-4 py-2.5" role="alert"></div>
+
+    <!-- Form tambah/edit produk -->
+    <section class="mt-6 bg-white border border-accent-light rounded-xl p-6" aria-labelledby="form-title">
+      <h2 id="form-title" class="font-bold text-primary-dark mb-4">Tambah Produk Baru</h2>
+
+      <form id="product-form" class="flex flex-col gap-4" novalidate>
+        <input type="hidden" id="product-id" value="" />
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="flex flex-col gap-1">
+            <label for="name" class="text-sm font-semibold text-muted">Nama Produk</label>
+            <input type="text" id="name" name="name" required class="border border-accent-light rounded-lg px-3 py-2 bg-cream focus:outline-none focus:ring-2 focus:ring-primary" />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="category" class="text-sm font-semibold text-muted">Kategori</label>
+            <select id="category" name="category" required class="border border-accent-light rounded-lg px-3 py-2 bg-cream focus:outline-none focus:ring-2 focus:ring-primary">
+              <option value="sembako">Sembako</option>
+              <option value="rumah-tangga">Rumah Tangga</option>
+            </select>
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="price" class="text-sm font-semibold text-muted">Harga (Rp)</label>
+            <input type="number" id="price" name="price" min="0" required class="border border-accent-light rounded-lg px-3 py-2 bg-cream focus:outline-none focus:ring-2 focus:ring-primary" />
+          </div>
+
+          <div class="flex flex-col gap-1">
+            <label for="stock" class="text-sm font-semibold text-muted">Stok</label>
+            <input type="number" id="stock" name="stock" min="0" required class="border border-accent-light rounded-lg px-3 py-2 bg-cream focus:outline-none focus:ring-2 focus:ring-primary" />
+          </div>
+        </div>
+
+        <div class="flex flex-col gap-1">
+          <label for="description" class="text-sm font-semibold text-muted">Deskripsi</label>
+          <textarea id="description" name="description" rows="2" class="border border-accent-light rounded-lg px-3 py-2 bg-cream focus:outline-none focus:ring-2 focus:ring-primary resize-none"></textarea>
+        </div>
+
+        <div class="flex gap-3">
+          <button type="submit" id="form-submit-btn" class="bg-accent hover:bg-accent/90 text-white font-semibold px-5 py-2.5 rounded-lg">
+            Simpan Produk
+          </button>
+          <button type="button" id="form-cancel-btn" class="hidden bg-accent-light hover:bg-accent-light/70 text-primary-dark font-semibold px-5 py-2.5 rounded-lg">
+            Batal Edit
+          </button>
+        </div>
+      </form>
+    </section>
+
+    <!-- Daftar produk -->
+    <section class="mt-8" aria-labelledby="list-title">
+      <h2 id="list-title" class="font-bold text-primary-dark mb-4">Semua Produk</h2>
+      <div id="product-table-wrap" class="bg-white border border-accent-light rounded-xl overflow-x-auto">
+        <table class="w-full text-sm text-left">
+          <thead class="bg-accent-light/60 text-primary-dark">
+            <tr>
+              <th class="px-4 py-3">Nama</th>
+              <th class="px-4 py-3">Kategori</th>
+              <th class="px-4 py-3">Harga</th>
+              <th class="px-4 py-3">Stok</th>
+              <th class="px-4 py-3 text-right">Aksi</th>
+            </tr>
+          </thead>
+          <tbody id="product-table-body">
+            <!-- Diisi dinamis lewat Fetch API (public/js/dashboard.js) -->
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <%- include('partials/footer') %>
+  <script src="/js/main.js"></script>
+  <script src="/js/dashboard.js"></script>
+</body>
+</html>
