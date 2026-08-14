@@ -1,17 +1,20 @@
 {
   "name": "toko-sembako-ariesta",
-  "version": "1.0.0",
-  "description": "Website & REST API Toko Sembako Ariesta",
+  "version": "2.0.0",
+  "description": "Aplikasi Web Toko Sembako Ariesta - Tugas PAW UCP1",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
     "dev": "nodemon app.js"
   },
   "dependencies": {
-    "ejs": "^3.1.9",
-    "express": "^4.19.2"
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0"
   },
   "devDependencies": {
-    "nodemon": "^3.1.0"
+    "nodemon": "^3.1.4"
   }
 }
