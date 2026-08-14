@@ -33,7 +33,7 @@ Password ini di-hash pakai **bcrypt** sebelum dibandingkan saat login
 (lihat `data/users.js`) tidak dibandingkan sebagai teks polos.
 
 ## Struktur Folder
-
+```
 UTS PAW/
 ├── data/
 │   ├── products.js          # data produk (in-memory, dipakai bareng oleh
@@ -71,6 +71,7 @@ UTS PAW/
 ├── .env.example                   # contoh variabel .env
 ├── .gitignore
 └── README.md
+```
 
 ## Daftar Endpoint API
 
