@@ -6,7 +6,6 @@ const products = [
     category: "sembako",
     price: 65000,
     stock: 20,
-    image: "beras.jpg",
     description: "Beras pulen kualitas premium, cocok untuk kebutuhan sehari-hari keluarga.",
   },
   {
@@ -15,7 +14,6 @@ const products = [
     category: "sembako",
     price: 34000,
     stock: 15,
-    image: "minyak.jpg",
     description: "Minyak goreng kemasan jerigen 2 liter, jernih dan tidak mudah tengik.",
   },
   {
@@ -24,7 +22,6 @@ const products = [
     category: "sembako",
     price: 16000,
     stock: 30,
-    image: "gula.jpg",
     description: "Gula pasir putih bersih, cocok untuk minuman dan masakan sehari-hari.",
   },
   {
@@ -33,7 +30,6 @@ const products = [
     category: "sembako",
     price: 29000,
     stock: 25,
-    image: "telur.jpg",
     description: "Telur ayam negeri segar, dipilih langsung dari peternak lokal.",
   },
   {
@@ -42,7 +38,6 @@ const products = [
     category: "rumah-tangga",
     price: 15500,
     stock: 18,
-    image: "sabun.jpg",
     description: "Sabun cuci piring wangi jeruk nipis, ampuh mengangkat lemak membandel.",
   },
   {
@@ -51,7 +46,6 @@ const products = [
     category: "rumah-tangga",
     price: 18000,
     stock: 10,
-    image: "tisu.jpg",
     description: "Tisu toilet lembut isi 4 roll, hemat untuk kebutuhan rumah tangga.",
   },
 ];
