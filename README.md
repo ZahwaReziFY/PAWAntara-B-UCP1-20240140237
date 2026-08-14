@@ -34,8 +34,7 @@ Password ini di-hash pakai **bcrypt** sebelum dibandingkan saat login
 
 ## Struktur Folder
 
-\`\`\`
-PAWAntara-B-UCP1-20240140237/
+UTS PAW/
 ├── data/
 │   ├── products.js          # data produk (in-memory, dipakai bareng oleh
 │   │                          #   halaman publik & endpoint CRUD)
@@ -72,7 +71,6 @@ PAWAntara-B-UCP1-20240140237/
 ├── .env.example                   # contoh variabel .env
 ├── .gitignore
 └── README.md
-\`\`\`
 
 ## Daftar Endpoint API
 
