@@ -1,5 +1,8 @@
+require("dotenv").config();
+
 const express = require("express");
 const path = require("path");
+const session = require("express-session");
 
 const pageRoutes = require("./routes/pages");
 const apiRoutes = require("./routes/api");
@@ -16,6 +19,27 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, "public")));
 
+// ==================== SPRINT 2 ====================
+// Session-based auth (FR-11, FR-12, FR-13)
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "toko-ariesta-secret-dev",
+    resave: false,
+    saveUninitialized: false,
+    cookie: {
+      httpOnly: true,
+      maxAge: 1000 * 60 * 60 * 2, // 2 jam
+    },
+  })
+);
+
+// Supaya views (navbar) tahu status login tanpa perlu dikirim manual tiap render
+app.use((req, res, next) => {
+  res.locals.loggedIn = Boolean(req.session && req.session.isLoggedIn);
+  res.locals.username = (req.session && req.session.username) || null;
+  next();
+});
+
 // ==================== SPRINT 1 ====================
 // Middleware custom: request logger (FR-08, dipakai juga di Sprint 2)
 app.use((req, res, next) => {
@@ -24,13 +48,9 @@ app.use((req, res, next) => {
   next();
 });
 
-// TODO SPRINT 2: tambahkan express-session / JWT middleware di sini
-// TODO SPRINT 2: tambahkan middleware auth untuk proteksi dashboard & endpoint mutasi
-
 // ---- Routes ----
-app.use("/", pageRoutes);   // Sprint 1: Beranda, Produk, Detail, Tanya AI
-app.use("/api", apiRoutes); // Sprint 1: GET /api/products (read-only)
-// TODO SPRINT 2: tambahkan routes/dashboard.js (khusus admin, dilindungi login)
+app.use("/", pageRoutes);   // Beranda, Produk, Detail, Tanya AI, Login, Dashboard
+app.use("/api", apiRoutes); // REST API: products CRUD, login, logout, chat
 
 // ---- 404 fallback ----
 app.use((req, res) => {
