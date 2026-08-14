@@ -24,38 +24,56 @@ document.addEventListener("DOMContentLoaded", function () {
     });
   }
 
-  // ===== SPRINT 1: Form Tanya AI (tampilan/simulasi lokal saja) =====
-  // TODO SPRINT 2: ganti blok ini dengan fetch(POST /api/chat) supaya
-  // balasan benar-benar datang dari logika dummy di backend.
+  // ===== SPRINT 2: Form Tanya AI -> fetch(POST /api/chat) beneran =====
   const chatForm = document.getElementById("chat-form");
   const chatWindow = document.getElementById("chat-window");
 
+  function tambahBubble(teks, dariUser) {
+    const bubble = document.createElement("div");
+    bubble.className = dariUser
+      ? "chat-bubble max-w-[70%] self-end bg-primary text-white px-4 py-2.5 rounded-2xl rounded-br-sm text-sm"
+      : "chat-bubble max-w-[70%] self-start bg-accent-light text-ink px-4 py-2.5 rounded-2xl rounded-bl-sm text-sm";
+    bubble.innerHTML = "<p></p>";
+    bubble.querySelector("p").textContent = teks;
+    chatWindow.appendChild(bubble);
+    chatWindow.scrollTop = chatWindow.scrollHeight;
+    return bubble;
+  }
+
   if (chatForm && chatWindow) {
-    chatForm.addEventListener("submit", function (e) {
+    chatForm.addEventListener("submit", async function (e) {
       e.preventDefault();
 
       const input = document.getElementById("pertanyaan");
       const pertanyaan = input.value.trim();
 
+      // Validasi dasar (FR-17): cegah submit kosong
       if (!pertanyaan) {
         return;
       }
 
-      const userBubble = document.createElement("div");
-      userBubble.className =
-        "chat-bubble max-w-[70%] self-end bg-primary text-white px-4 py-2.5 rounded-2xl rounded-br-sm text-sm";
-      userBubble.innerHTML = "<p></p>";
-      userBubble.querySelector("p").textContent = pertanyaan;
-      chatWindow.appendChild(userBubble);
-
-      const placeholderBubble = document.createElement("div");
-      placeholderBubble.className =
-        "chat-bubble max-w-[70%] self-start bg-accent-light text-ink px-4 py-2.5 rounded-2xl rounded-bl-sm text-sm";
-      placeholderBubble.innerHTML =
-        "<p>Fitur balasan otomatis akan tersedia di Sprint 2 🙂</p>";
-      chatWindow.appendChild(placeholderBubble);
-
+      tambahBubble(pertanyaan, true);
       input.value = "";
+
+      const typingBubble = tambahBubble("Mengetik...", false);
+
+      try {
+        const res = await fetch("/api/chat", {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ pertanyaan }),
+        });
+        const result = await res.json();
+
+        typingBubble.querySelector("p").textContent =
+          result.status === "success"
+            ? result.data.reply
+            : result.message || "Maaf, terjadi kesalahan.";
+      } catch (err) {
+        typingBubble.querySelector("p").textContent =
+          "Maaf, gagal terhubung ke server. Coba lagi ya.";
+      }
+
       chatWindow.scrollTop = chatWindow.scrollHeight;
     });
   }
