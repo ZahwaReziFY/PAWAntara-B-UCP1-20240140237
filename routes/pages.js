@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const products = require("../data/products");
+const { requireAuthPage } = require("../middleware/auth");
 
 // ==================== SPRINT 1 ====================
 
@@ -14,6 +15,10 @@ router.get("/", (req, res) => {
 });
 
 // GET /produk -> Daftar produk + filter lewat query string (FR-06)
+// Catatan Sprint 2: data dibaca langsung dari modul data/products.js yang
+// SAMA dengan yang diubah oleh endpoint CRUD (bukan sumber data terpisah),
+// jadi begitu admin tambah/edit/hapus produk di dashboard, halaman ini
+// langsung ikut berubah tanpa restart server.
 router.get("/produk", (req, res) => {
   const { kategori, search } = req.query;
   let hasil = products;
@@ -55,14 +60,28 @@ router.get("/produk/:id", (req, res) => {
   });
 });
 
-// GET /tanya-ai -> Halaman chat (belum ada logic balasan di Sprint 1)
+// GET /tanya-ai -> Halaman chat (balasan asli lewat POST /api/chat, Sprint 2)
 router.get("/tanya-ai", (req, res) => {
   res.render("tanya-ai", { title: "Tanya AI" });
 });
 
-// ==================== SPRINT 2 (belum dikerjakan) ====================
-// TODO: GET  /login      -> halaman login admin/kasir
-// TODO: GET  /dashboard  -> halaman kelola produk (wajib login, pakai middleware auth)
-// TODO: POST /logout     -> hapus sesi lalu redirect ke /login
+// ==================== SPRINT 2 ====================
+
+// GET /login -> Halaman login admin/kasir
+router.get("/login", (req, res) => {
+  // Kalau sudah login, gak perlu lihat form login lagi
+  if (req.session && req.session.isLoggedIn) {
+    return res.redirect("/dashboard");
+  }
+  res.render("login", { title: "Login Admin" });
+});
+
+// GET /dashboard -> Kelola produk (WAJIB login, dilindungi middleware auth)
+router.get("/dashboard", requireAuthPage, (req, res) => {
+  res.render("dashboard", {
+    title: "Dashboard Admin",
+    username: req.session.username,
+  });
+});
 
 module.exports = router;
